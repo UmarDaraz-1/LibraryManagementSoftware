@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+  
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Library</title>
+    </head>
+    <body>
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <section class="section">
+                        <div class="colums">
+                            <div class="column is-8 is-offset-2">
+                                {% for book in books %}
+                                <div class="content is-medium">
+                                    <a href="{% url 'book_detail' %}"></a>
+                                        {% if book.image %}
+                                        <figure class="image">
+                                            <img src="{{ book.image.url }}"  style="max-width: 10%;">
+                                            
+                                        </figure>
+                                        {% endif %}
+                                        <h2 class="subtitle is-4"> {{ book.created_at| timesince}} </h2>
+                                        <h1 class="title"> {{ book.title }} </h1>
+                                        <p>{{ book.author }} </p>
+                                        <p>{{ book.isbn }} </p>
+                                        <p>{{ book.category }} </p>
+                                        <p>{{ book.content }} </p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                   </section>
+                </div>
+            </div>
+            
+        </section>
+    </body>
+</html>
+    {% endblock content %}
